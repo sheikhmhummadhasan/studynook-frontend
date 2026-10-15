@@ -5,11 +5,8 @@ import React from "react";
 const RoomsCard = ({ e }) => {
   return (
     <div>
-      <div >
-        <div
-          className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-        >
-
+      <div>
+        <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
           <div className="overflow-hidden">
             <Image
               src={e.imageUrl}
@@ -22,9 +19,7 @@ const RoomsCard = ({ e }) => {
 
           <div className="space-y-4 p-5">
             <div>
-              <h2 className="text-xl font-bold text-gray-800">
-                {e.roomName}
-              </h2>
+              <h2 className="text-xl font-bold text-gray-800">{e.roomName}</h2>
 
               <p className="mt-2 text-sm leading-6 text-gray-500">
                 {e.description.length > 100
@@ -41,23 +36,31 @@ const RoomsCard = ({ e }) => {
 
               <div>
                 <p className="text-xs text-gray-500">Seat Capacity</p>
-                <p className="font-semibold text-gray-700">
-                  {e.seatCapacity}
-                </p>
+                <p className="font-semibold text-gray-700">{e.seatCapacity}</p>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {e.amenities.slice(0, 3).map((amenity, index) => (
-                <span
-                  key={index}
-                  className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-medium text-cyan-700"
-                >
-                  {amenity}
-                </span>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {(Array.isArray(e.amenities) ? e.amenities : [])
+                  .slice(0, 3)
+                  .map((amenity, index) => (
+                    <span
+                      key={index}
+                      className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-medium text-cyan-700"
+                    >
+                      {amenity}
+                    </span>
+                  ))}
 
-              {e.amenities.length > 3 && (
+                {Array.isArray(e.amenities) && e.amenities.length > 3 && (
+                  <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                    +{e.amenities.length - 3} more
+                  </span>
+                )}
+              </div>
+
+              {Array.isArray(e.amenities) && e.amenities.length > 3 && (
                 <span className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
                   +{e.amenities.length - 3} more
                 </span>

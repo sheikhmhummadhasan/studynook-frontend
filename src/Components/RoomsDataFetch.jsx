@@ -4,7 +4,6 @@ import RoomsCard from "./RoomsCard";
 const RoomsDataFetch = async () => {
   const prom = await fetch("http://localhost:5000/studynook");
   const res = await prom.json();
-  console.log(res);
 
   return (
     <div>

@@ -3,6 +3,7 @@ import { Calendar } from "@gravity-ui/icons";
 import { Button, DateField, Label } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import DeleteButton from "./DeleteButton";
 
 const RoomsDetailcard = ({ res }) => {
   const {
@@ -85,12 +86,7 @@ const RoomsDetailcard = ({ res }) => {
                 Update
               </Link>
 
-              <button
-                type="button"
-                className="rounded-full bg-red-50 px-5 py-2 text-sm font-medium text-red-500 transition hover:bg-red-100"
-              >
-                Delete
-              </button>
+              <DeleteButton id={_id}></DeleteButton>
             </div>
           </div>
 

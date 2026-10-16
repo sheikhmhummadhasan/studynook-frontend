@@ -1,8 +1,21 @@
 import React from "react";
 import RoomsCard from "./RoomsCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const RoomsDataFetch = async () => {
-  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook`);
+  const { token } = await auth.api.getSession({
+    headers: await headers(),
+  });
+  console.log(token)
+  const prom = await fetch(
+    `https://study-nook-backend-tau.vercel.app/studynook`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
+  );
   const res = await prom.json();
 
   return (

@@ -2,7 +2,7 @@ import RoomsCard from "@/Components/RoomsCard";
 import React from "react";
 
 const RoomsPage = async () => {
-      const prom = await fetch("http://localhost:5000/studynook");
+      const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook`);
   const res = await prom.json();
   return (
     <div>

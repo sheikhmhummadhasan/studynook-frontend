@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const DeleteButton = ({ id }) => {
   const handelDelete = async () => {
-    const prom = await fetch(`http://localhost:5000/sturdynook/${id}`, {
+    const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/${id}`, {
       method: "DELETE",
     });
     const res = await prom.json();

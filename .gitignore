@@ -42,3 +42,6 @@ next-env.d.ts
 
 # enveirment veariables 
 .env
+
+.vercel
+.env*

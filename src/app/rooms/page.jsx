@@ -2,8 +2,17 @@ import RoomsCard from "@/Components/RoomsCard";
 import React from "react";
 
 const RoomsPage = async () => {
-      const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook`);
+  const prom = await fetch(
+    `https://study-nook-backend-tau.vercel.app/studynook`,
+  );
   const res = await prom.json();
+  if (res.length === 0) {
+    return (
+      <p className="py-10 text-center text-secondary text-lg font-semibold">
+        No rooms found
+      </p>
+    );
+  }
   return (
     <div>
       <div>

@@ -1,12 +1,13 @@
+import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { auth } from './lib/auth'
 
 export async function proxy(request) {
    const session = await auth.api.getSession({
-    headers: request.headers,
-  });
+           headers: await headers()
+   })
 
+  console.log(session)
   if (!session) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
@@ -16,9 +17,9 @@ export async function proxy(request) {
 
 export const config = {
   matcher: [
-    "/add-room/:path*",
-    "/rooms/:path*",
-    "/my-listings/:path*",
-    "/my-bookings/:path*",
+    "/add-room",
+    "/rooms",
+    "/my-listings",
+    "/my-bookings",
   ],
 };

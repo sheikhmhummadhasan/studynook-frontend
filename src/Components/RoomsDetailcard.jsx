@@ -20,12 +20,9 @@ const RoomsDetailcard = ({ res }) => {
     roomName,
     seatCapacity,
   } = res;
-
   const bookingDate = new Date(date);
-
   const handelBooking = async () => {
     const { data, error } = await authClient.token();
-
     const dataColl = {
       amenities,
       description,
@@ -36,7 +33,6 @@ const RoomsDetailcard = ({ res }) => {
       seatCapacity,
       bookingDate,
     };
-
     const prom = await fetch(`http://localhost:5000/booking`, {
       method: "POST",
       headers: {

@@ -4,18 +4,12 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 const RoomsDataFetch = async () => {
-  const { token } = await auth.api.getSession({
+  const session = await auth.api.getSession({
     headers: await headers(),
   });
-  console.log(token)
+  console.log(session)
   const prom = await fetch(
-    `https://study-nook-backend-tau.vercel.app/studynook`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    },
-  );
+    `https://study-nook-backend-tau.vercel.app/studynook` );
   const res = await prom.json();
 
   return (

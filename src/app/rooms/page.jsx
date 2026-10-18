@@ -3,7 +3,7 @@ import React from "react";
 
 const RoomsPage = async () => {
   const prom = await fetch(
-    `https://study-nook-backend-tau.vercel.app/studynook`,
+    `http://localhost:5000/studynook`,
   );
   const res = await prom.json();
   if (res.length === 0) {

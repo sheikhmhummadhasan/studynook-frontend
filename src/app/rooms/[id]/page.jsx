@@ -1,36 +1,27 @@
-import RoomsDetailcard from '@/Components/RoomsDetailcard';
-import React from 'react';
-import { cookies } from 'next/headers';
+import RoomsDetailcard from "@/Components/RoomsDetailcard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import React from "react";
 
 const RoomDetailPage = async ({ params }) => {
-    console.log('RoomDetailPage rendered');
+  const { id } = await params;
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+//   console.log(token);
+  const prom = await fetch(`http://localhost:5000/studynook/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const res = await prom.json();
+//   console.log(res);
 
-    const { id } = await params;
-
-    const cookieStore = await cookies();
-    const token = cookieStore.get('token')?.value;
-
-    console.log('Room ID:', id);
-
-    const prom = await fetch(
-        `http://localhost:5000/studynook/${id}`,
-        {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            cache: 'no-store',
-        }
-    );
-
-    console.log('API status:', prom.status);
-
-    const res = await prom.json();
-
-    return (
-        <div>
-            <RoomsDetailcard res={res} />
-        </div>
-    );
+  return (
+    <div>
+      <RoomsDetailcard res={res} />
+    </div>
+  );
 };
 
 export default RoomDetailPage;

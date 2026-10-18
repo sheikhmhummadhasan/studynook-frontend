@@ -4,8 +4,12 @@ import { Button, DateField, Label } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import DeleteButton from "./DeleteButton";
+import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const RoomsDetailcard = ({ res }) => {
+  const [date, setDate] = useState(null);
   const {
     _id,
     amenities,
@@ -16,6 +20,33 @@ const RoomsDetailcard = ({ res }) => {
     roomName,
     seatCapacity,
   } = res;
+
+  const bookingDate = new Date(date);
+
+  const handelBooking = async () => {
+    const { data, error } = await authClient.token();
+
+    const dataColl = {
+      amenities,
+      description,
+      floor,
+      hourlyRate,
+      imageUrl,
+      roomName,
+      seatCapacity,
+      bookingDate,
+    };
+
+    const prom = await fetch(`http://localhost:5000/booking`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${data?.token}`,
+      },
+      body: JSON.stringify(dataColl),
+    });
+    const resP = await prom.json();
+  };
 
   return (
     <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-xl bg-white shadow-lg sm:rounded-2xl">
@@ -98,7 +129,11 @@ const RoomsDetailcard = ({ res }) => {
             </h3>
 
             <p className="mb-4 text-xs text-slate-400">per hour</p>
-            <DateField className="w-full" name="date">
+            <DateField
+              onChange={(value) => setDate(value)}
+              className="w-full"
+              name="date"
+            >
               <Label>Date</Label>
               <DateField.Group>
                 <DateField.Input>
@@ -108,12 +143,13 @@ const RoomsDetailcard = ({ res }) => {
                   <Calendar className="size-4 text-slate-500" />
                 </DateField.Suffix>
               </DateField.Group>
-            <Button
-             type="submit"
-              className=" mt-2 w-full rounded-lg bg-cyan-500 px-3 py-3 text-center text-sm font-medium text-white transition hover:bg-cyan-600"
-            >
-              Book Now →
-            </Button>
+              <Button
+                onClick={handelBooking}
+                type="submit"
+                className=" mt-2 w-full rounded-lg bg-cyan-500 px-3 py-3 text-center text-sm font-medium text-white transition hover:bg-cyan-600"
+              >
+                Book Now →
+              </Button>
             </DateField>
 
             <div className="mt-4 space-y-2 text-xs leading-5 text-slate-500">

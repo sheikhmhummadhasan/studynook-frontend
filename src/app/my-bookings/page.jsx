@@ -9,7 +9,7 @@ const MyBookingPage = async () => {
     headers: await headers(),
   });
 
-  const prom = await fetch(`http://localhost:5000/booking`, {
+  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

@@ -34,7 +34,7 @@ const RoomsDetailcard = ({ res }) => {
       seatCapacity,
       bookingDate,
     };
-    const prom = await fetch(`http://localhost:5000/booking`, {
+    const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

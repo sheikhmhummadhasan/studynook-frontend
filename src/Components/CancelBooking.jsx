@@ -12,7 +12,7 @@ const CancelBooking = ({ res }) => {
   const handleCancel = async (id) => {
     const { data, error } = await authClient.token();
 
-    const prom = await fetch(`http://localhost:5000/booking/${id}`, {
+    const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking/${id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${data?.token}`,
@@ -30,7 +30,7 @@ const CancelBooking = ({ res }) => {
   };
   const handleDelete = async (id) => {
     const { data, error } = await authClient.token();
-    const prom = await fetch(`http://localhost:5000/booking/${id}`, {
+    const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${data?.token}`,

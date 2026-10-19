@@ -7,7 +7,7 @@ export const handleCancel = async (e) => {
       });
     console.log(e)
     e.preventDefault();
-    const prom = await fetch(`http://localhost:5000/booking/${e.id}`, {
+    const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking/${e.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,

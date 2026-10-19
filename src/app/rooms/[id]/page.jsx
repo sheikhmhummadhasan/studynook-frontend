@@ -9,7 +9,7 @@ const RoomDetailPage = async ({ params }) => {
     headers: await headers(),
   });
 //   console.log(token);
-  const prom = await fetch(`http://localhost:5000/studynook/${id}`, {
+  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/studynook/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

@@ -7,6 +7,7 @@ import DeleteButton from "./DeleteButton";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
 const RoomsDetailcard = ({ res }) => {
   const [date, setDate] = useState(null);
@@ -42,6 +43,14 @@ const RoomsDetailcard = ({ res }) => {
       body: JSON.stringify(dataColl),
     });
     const resP = await prom.json();
+    if(resP){
+      toast.success('Booking Confirmed')
+      redirect('/my-bookings')
+    }
+    if(!resP){
+      toast.error('Somthing Went to wrong..')
+    }
+    
   };
 
   return (

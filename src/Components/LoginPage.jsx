@@ -1,5 +1,4 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Input } from "@heroui/react";
 import { createAuthClient } from "better-auth/react";

@@ -3,9 +3,10 @@ import React from "react";
 
 const RoomsPage = async () => {
   const prom = await fetch(
-    `https://study-nook-backend-tau.vercel.app/studynook/studynook`,
+    `https://study-nook-backend-tau.vercel.app/studynook`,
   );
   const res = await prom.json();
+  console.log(res)
   if (res.length === 0) {
     return (
       <p className="py-10 text-center text-secondary text-lg font-semibold">

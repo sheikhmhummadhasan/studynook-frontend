@@ -8,14 +8,14 @@ const RoomDetailPage = async ({ params }) => {
   const { token } = await auth.api.getToken({
     headers: await headers(),
   });
-//   console.log(token);
-  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/studynook/${id}`, {
+  console.log(token);
+  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
   const res = await prom.json();
-//   console.log(res);
+  console.log(res);
 
   return (
     <div>

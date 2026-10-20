@@ -30,7 +30,7 @@ const EditRooms = ({ id, res }) => {
     try {
       const formdata = new FormData(e.currentTarget);
       const data = Object.fromEntries(formdata.entries());
-      const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/${id}`, {
+      const prom = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/${id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

@@ -38,14 +38,14 @@ const AddRoomForm = () => {
     data.amenities = amenities;
     console.log("Submitted Room Data:", data);
 
-
-    const res = await fetch(`https://study-nook-backend-tau.vercel.app/studynook`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/studynook`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(data),
     });
+
     const result = await res.json();
   };
 

@@ -3,7 +3,7 @@ import React from "react";
 
 const Updatedata = async ({ params }) => {
   const { id } = await params;
-  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/${id}`);
+  const prom = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/${id}`);
   const res = await prom.json();
 
   return (

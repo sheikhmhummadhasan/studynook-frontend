@@ -9,13 +9,13 @@ const MyBookingPage = async () => {
     headers: await headers(),
   });
 
-  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking`, {
+  const prom = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
   const res = await prom.json();
-  console.log(res.length)
+  
   return(
     res.length === 0 ?  <NoBookings /> : <CancelBooking res={res} /> 
   ) 

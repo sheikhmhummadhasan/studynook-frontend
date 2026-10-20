@@ -7,12 +7,11 @@ import { toast } from "react-toastify";
 import { redirect } from "next/navigation";
 
 const CancelBooking = ({ res }) => {
-  // console.log(data.token)
 
   const handleCancel = async (id) => {
     const { data, error } = await authClient.token();
 
-    const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking/${id}`, {
+    const prom = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${data?.token}`,
@@ -30,7 +29,7 @@ const CancelBooking = ({ res }) => {
   };
   const handleDelete = async (id) => {
     const { data, error } = await authClient.token();
-    const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/booking/${id}`, {
+    const prom = await fetch(`http://localhost:5000/booking/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${data?.token}`,

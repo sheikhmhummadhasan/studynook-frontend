@@ -9,7 +9,7 @@ const RoomsDataFetch = async () => {
   });
 
   const prom = await fetch(
-    `https://study-nook-backend-tau.vercel.app/studynook`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/studynook`,
   );
   const res = await prom.json();
 

@@ -9,7 +9,7 @@ const RoomDetailPage = async ({ params }) => {
     headers: await headers(),
   });
   console.log(token);
-  const prom = await fetch(`https://study-nook-backend-tau.vercel.app/studynook/${id}`, {
+  const prom = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/studynook/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
